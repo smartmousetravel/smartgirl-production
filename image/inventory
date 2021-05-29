@@ -1,0 +1,21 @@
+# -*- mode: yaml; yaml-indent-offset: 2 -*-
+
+all:
+  hosts:
+    www-prod-1.smartgirltravel.com:
+      extra_tls_hosts:
+        - 'smartgirltravel.com'
+        - 'www.smartgirltravel.com'
+        - 'prometheus.smartgirltravel.com'
+      has_separate_disks: true
+      is_gce: true
+      docker_users: ['lucas']
+      disk_db_id: 'google-www-wp-db'
+      disk_content_id: 'google-www-wp-content'
+      wordpress_db_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          65646231386565666166646334636539346461373236353565353531616530383238666261343765
+          3464616161343538373264343032303431343538313932620a366362366530656330346235616131
+          33363537666338643331383433343336356132326636373563646631343866306337326637353839
+          6665346435643861300a353562636530353539336162386265396463643136643062326161363430
+          6132
