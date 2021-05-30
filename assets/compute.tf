@@ -28,7 +28,7 @@ resource "google_compute_address" "www_prod_1" {
 resource "google_compute_instance" "www_prod_1" {
     name = "www-prod-1"
     zone = var.gcloud_zone
-    machine_type = "e2-micro"
+    machine_type = "e2-small"
     tags = ["web"]
 
     boot_disk {
