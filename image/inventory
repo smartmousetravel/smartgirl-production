@@ -3,10 +3,6 @@
 all:
   hosts:
     www-prod-1.smartgirltravel.com:
-      extra_tls_hosts:
-        - 'smartgirltravel.com'
-        - 'www.smartgirltravel.com'
-        - 'prometheus.smartgirltravel.com'
       has_separate_disks: true
       is_gce: true
       docker_users: ['lucas']

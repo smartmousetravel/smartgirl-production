@@ -20,3 +20,7 @@
     daemon_reload: yes
     state: started
     enabled: yes
+
+- name: run gencerts
+  shell:
+    cmd: /usr/local/bin/gencerts

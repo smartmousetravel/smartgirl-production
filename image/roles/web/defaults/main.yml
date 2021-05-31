@@ -1,7 +1,3 @@
-virtual_host: '{{ my_hostname }}'
-extra_virtual_hosts: []
-extra_tls_hosts: []
-
 is_gce: false
 
 mysql_uid: '999'

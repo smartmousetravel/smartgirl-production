@@ -118,12 +118,32 @@
 
 - name: Install nginx config
   template:
-    src: 'nginx-www.conf'
-    dest: '/etc/nginx/conf.d/www.conf'
+    src: 'nginx/{{ item }}'
+    dest: '/etc/nginx/sites-available'
     owner: 'root'
     group: 'root'
     mode: 'u=rw,g=r'
+  with_items:
+    - 'smartgirl.conf'
+    - 'smartgirl-ssl.conf'
+    - 'smartgirl-www.conf'
+    - 'smartgirl-www-ssl.conf'
+    - 'smartgirl-prometheus.conf'
+    - 'smartgirl-prometheus-ssl.conf'
   notify: ['reload nginx']
+
+- name: Enable non-SSL nginx config
+  file:
+    src: '/etc/nginx/sites-available/{{ item }}'
+    dest: '/etc/nginx/sites-enabled/{{ item }}'
+    state: link
+  with_items:
+    - 'smartgirl.conf'
+    - 'smartgirl-www.conf'
+    - 'smartgirl-prometheus.conf'
+  notify:
+    - 'reload nginx'
+    - 'run gencerts'
 
 - name: Create monitoring config directory
   file:
